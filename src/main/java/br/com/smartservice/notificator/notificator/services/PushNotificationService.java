@@ -1,7 +1,8 @@
 package br.com.smartservice.notificator.notificator.services;
 
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.Message;
+import br.com.smartservice.notificator.notificator.dtos.internal.PushNotificationTokenMessageDto;
+import br.com.smartservice.notificator.notificator.dtos.internal.PushNotificationTopicMessageDto;
+import com.google.firebase.messaging.*;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -13,15 +14,31 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PushNotificationService {
 
-    private final Message.Builder messageBuilder;
 
     @SneakyThrows
-    public void send() {
-        Message message = messageBuilder.putData("teste", "teste")
+    public BatchResponse sendMessageWithToken(PushNotificationTokenMessageDto pushNotificationTokenMessageDto) {
+        MulticastMessage multicastMessage = MulticastMessage.builder()
+                .setNotification(Notification.builder()
+                        .setTitle(pushNotificationTokenMessageDto.getTitle())
+                        .setBody(pushNotificationTokenMessageDto.getMessage())
+                        .build())
+                .addAllTokens(pushNotificationTokenMessageDto.getToken())
                 .build();
 
-        String response = FirebaseMessaging.getInstance().send(message);
+        return FirebaseMessaging.getInstance().sendMulticast(multicastMessage);
+    }
 
-        log.info("Response from firebase: {}", response);
+    @SneakyThrows
+    public String sendMessageWithTopic(PushNotificationTopicMessageDto pushNotificationTopicMessageDto) {
+
+        Message message = Message.builder()
+                .setNotification(Notification.builder()
+                        .setTitle(pushNotificationTopicMessageDto.getTitle())
+                        .setBody(pushNotificationTopicMessageDto.getMessage())
+                        .build())
+                .setTopic(pushNotificationTopicMessageDto.getTopic())
+                .build();
+
+        return FirebaseMessaging.getInstance().send(message);
     }
 }
