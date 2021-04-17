@@ -16,18 +16,11 @@ public class FirebaseConfiguration {
     @Value("${google.application.credentials}")
     private String GOOGLE_APPLICATION_CREDENTIALS;
 
-    @Value("${token.cloud.message}")
-    private String TOKEN_CLOUD_MESSAGE;
-
-    @Value("${database.url}")
-    private String DATABASE_URL;
-
     @SneakyThrows
     @Bean
     public FirebaseApp firebaseApp() {
         FirebaseOptions options = FirebaseOptions.builder()
                 .setCredentials(GoogleCredentials.fromStream(new FileInputStream(GOOGLE_APPLICATION_CREDENTIALS)))
-                .setDatabaseUrl(DATABASE_URL)
                 .build();
 
         return FirebaseApp.initializeApp(options);
