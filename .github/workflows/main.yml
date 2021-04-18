@@ -13,6 +13,16 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Setup Maven
+      # You may pin to the exact commit or the version.
+      # uses: stCarolas/setup-maven@3c9ddfb1c6df927e174580018dd71e774bc7dd48
+      uses: stCarolas/setup-maven@v4.1
+      with: 
+        maven-version: 3.6.3
+        
+    - name: Run builds
+      run: mvn clean package -DskipTests
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
