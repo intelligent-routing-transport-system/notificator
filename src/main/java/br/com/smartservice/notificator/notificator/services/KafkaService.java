@@ -10,8 +10,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class KafkaService {
     @KafkaListener(topics = KafkaTopics.NOTIFICATION_TOPIC)
-    public void consume(ConsumerRecord<String, Object> consumerRecord)
-    {
+    public void consume(ConsumerRecord<String, Object> consumerRecord) {
         log.info("Object received {}", consumerRecord.toString());
     }
 }
