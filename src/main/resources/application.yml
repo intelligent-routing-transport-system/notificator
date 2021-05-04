@@ -2,7 +2,7 @@ server:
   servlet:
     context-path: /notificator
 addresses:
-  kafka: 18.216.242.38
+  kafka: 3.16.30.151
 spring:
   kafka:
     consumer:
