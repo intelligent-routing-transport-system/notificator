@@ -8,11 +8,5 @@ spring:
     consumer:
       bootstrap-servers: ${addresses.kafka}:9092
       group-id: "NOTIFICATOR"
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: br.com.smartservice.notificator.notificator.configurations.NotificatorCustomDeserializer
       max-poll-records: 1
-
-    producer:
-      bootstrap-servers: ${addresses.kafka}:9092
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
