@@ -1,5 +1,6 @@
 package br.com.smartservice.notificator.notificator.controllers;
 
+import br.com.smartservice.notificator.notificator.dtos.internal.VersionDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class VersionController {
     @GetMapping
-    public ResponseEntity<String> sendPushNotificationWithToken() {
-        return ResponseEntity.ok("version");
+    public ResponseEntity<VersionDto> sendPushNotificationWithToken() {
+        return ResponseEntity.ok(new VersionDto("1.0.0"));
     }
 }
