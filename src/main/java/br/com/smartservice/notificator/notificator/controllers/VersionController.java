@@ -14,7 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class VersionController {
     @GetMapping
-    public ResponseEntity<VersionDto> sendPushNotificationWithToken() {
+    public ResponseEntity<VersionDto> version() {
+        return ResponseEntity.ok(new VersionDto("1.0.0"));
+    }
+    @GetMapping("v2")
+    public ResponseEntity<VersionDto> versionV2() {
         return ResponseEntity.ok(new VersionDto("1.0.0"));
     }
 }
