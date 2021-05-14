@@ -4,9 +4,31 @@ server:
 addresses:
   kafka: 3.16.30.151
 spring:
+  main:
+    banner-mode: off
+  application:
+    name: notificator
+  output:
+    ansi:
+      enabled: always
+  datasource:
+    url: jdbc:mysql://database-notificator.cz8ckafqijpp.sa-east-1.rds.amazonaws.com:3306/DB_NOTIFICATOR
+    username: admin
+    password: QAZ12345
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    devtools:
+      add-properties: false
   kafka:
     consumer:
       bootstrap-servers: ${addresses.kafka}:9092
       group-id: "NOTIFICATOR"
       value-deserializer: br.com.smartservice.notificator.notificator.configurations.NotificatorCustomDeserializer
       max-poll-records: 1
+logging:
+  level:
+    web: DEBUG
+    sql: DEBUG

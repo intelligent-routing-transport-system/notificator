@@ -17,8 +17,4 @@ public class VersionController {
     public ResponseEntity<VersionDto> version() {
         return ResponseEntity.ok(new VersionDto("1.0.0"));
     }
-    @GetMapping("v2")
-    public ResponseEntity<VersionDto> versionV2() {
-        return ResponseEntity.ok(new VersionDto("1.0.0"));
-    }
 }
