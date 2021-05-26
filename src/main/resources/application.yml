@@ -2,7 +2,7 @@ server:
   servlet:
     context-path: /notificator
 addresses:
-  kafka: 3.16.30.151
+  kafka: 18.228.116.15
 spring:
   main:
     banner-mode: off
