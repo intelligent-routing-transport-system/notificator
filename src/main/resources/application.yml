@@ -12,9 +12,9 @@ spring:
     ansi:
       enabled: always
   datasource:
-    url: jdbc:mysql://database-notificator.cz8ckafqijpp.sa-east-1.rds.amazonaws.com:3306/DB_NOTIFICATOR
-    username: admin
-    password: QAZ12345
+    url: ${DATABASE_URL}
+    username: ${USERNAME_DATABASE}
+    password: ${PASSWORD_DATABASE}
   jpa:
     open-in-view: false
     hibernate:
