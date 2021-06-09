@@ -2,7 +2,7 @@ server:
   servlet:
     context-path: /notificator
 addresses:
-  kafka: 54.94.19.153
+  kafka: 10.0.10.188
 spring:
   main:
     banner-mode: off
@@ -12,9 +12,9 @@ spring:
     ansi:
       enabled: always
   datasource:
-    url: ${DATABASE_URL}
-    username: ${USERNAME_DATABASE}
-    password: ${PASSWORD_DATABASE}
+    url: jdbc:mysql://database-notificator.cz8ckafqijpp.sa-east-1.rds.amazonaws.com:3306/DB_NOTIFICATOR
+    username: admin
+    password: QAZ12345
   jpa:
     open-in-view: false
     hibernate:
